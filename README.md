@@ -1,36 +1,156 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Asta’s Preparation Dashboard
 
-## Getting Started
+**Author:** Hiba Hussieni  
+**TechTalks — Assignment 2**  
+**Branch:** `assignment-2-asta-mvp`
 
-First, run the development server:
+A responsive dashboard that helps Asta follow three predefined training
+tasks, complete or undo them, and track preparation-plan completion.
+
+## Features
+
+1. View training tasks with descriptions and priorities.
+2. Mark tasks complete and undo completion.
+3. View a calculated completed/total count and percentage.
+
+Tasks:
+- Sword control
+- Physical endurance
+- Team coordination
+
+All tasks contribute equally to progress.
+The percentage measures plan completion, not the chance of winning.
+
+## Stack
+
+- Next.js with App Router
+- TypeScript
+- Tailwind CSS
+- React state
+
+## Installation
+
+Install Node.js compatible with the project's Next.js version.
+This project was developed using Node.js 24.
+
+From the repository folder:
 
 ```bash
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the local URL printed in the terminal, normally:
+http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+On Windows PowerShell, if npm.ps1 is blocked, use:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```powershell
+npm.cmd ci
+npm.cmd run dev
+```
 
-## Learn More
+## Checks and Production Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run lint
+npm run build
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The production server requires a successful build first.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## State and Progress
 
-## Deploy on Vercel
+Each task has a completion boolean.
+Count and percentage are derived from the current task states.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+percentage = Math.round((completedCount / totalTasks) * 100)
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Expected values:
+- 0 / 3: 0%
+- 1 / 3: 33%
+- 2 / 3: 67%
+- 3 / 3: 100%
+
+Progress is held in memory and resets when the page refreshes.
+No database or browser persistence is used.
+
+## Project Files
+
+- `app/page.tsx`: dashboard title and threat brief.
+- `app/TrainingDashboard.tsx`: interactive tasks and progress.
+- `app/globals.css`: global styling.
+- `app/TrainingPoc.tsx`: retained minimal experiment; not rendered
+  by the final dashboard.
+
+The POC is also preserved in Git history:
+`f6e1431` — Test training progress proof of concept.
+
+## Documentation
+
+- [Product requirements](docs/PRD.md)
+- [Design decisions and refinement](docs/DESIGN.md)
+- [MCP connection and actual results](docs/MCP.md)
+- [POC approach and manual results](docs/POC.md)
+- [Engineering review and remaining work](docs/REVIEW.md)
+- [Screenshots](docs/evidence/)
+
+## Design and MCP
+
+The dashboard was designed in Google Stitch for desktop and mobile.
+
+A refinement removed an unnecessary design-specification section
+and its disabled demonstration button.
+
+VS Code's MCP client connected to the Stitch server.
+Successful calls returned project information and desktop screen details.
+The returned HTML URL was fetched separately to check the refined content.
+
+See `docs/MCP.md` for tool names and results.
+Design screenshots are available in `docs/evidence/`.
+
+## Verification
+
+- ESLint completed successfully with exit code 0.
+- Production build and TypeScript checks completed successfully.
+- Manual completion, undo, repeated-toggle, and refresh checks passed.
+- Keyboard activation and visible focus were checked manually.
+- The layout was checked on desktop and at 360px wide.
+- Hiba compared the desktop implementation with the selected design
+  and reported it was close.
+
+No automated browser test suite was run.
+An independent user session is still pending.
+
+## Dependency Audit
+
+At the time of verification:
+- `npm audit --omit=dev`: zero reported vulnerabilities.
+- Full `npm audit`: five high-severity findings in the ESLint
+  development dependency chain.
+
+The suggested forced fix would downgrade `eslint-config-next`
+to version 14.2.35. It was not applied because it introduces a
+breaking change to the Next.js 16 setup.
+
+These development dependency findings remain unresolved.
+
+## Scope and Limitations
+
+- Exactly three predefined tasks.
+- One dashboard screen.
+- No login, database, task editing, payments, chatbot,
+  combat simulation, or live anime data.
+- Progress resets after refresh.
+- Independent user feedback remains to be collected.
+- Screen-reader behaviour and measured color contrast
+  have not been verified.
+
+## Credits
+
+Educational project inspired by Black Clover, created by Yuki Tabata.
+The training tasks and dashboard scenario were supplied by TechTalks.
+This is an unofficial educational application.

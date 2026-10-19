@@ -1,32 +1,14 @@
-# Engineering Review
+## 8. Final Verification Update
 
-Author: Hiba Hussieni
+- Repeated toggles were tested on the final MVP and passed.
+- Refreshing the final MVP reset all tasks to incomplete and progress
+  to 0 / 3 and 0%.
+- I compared the desktop implementation with the selected Stitch design.
+  The layout was close; I did not identify a meaningful mismatch
+  requiring correction.
+- Final application screenshots were saved:
+  - evidence/mvp-desktop.png
 
-## 1. PRD Review
+- The independent user session remains pending.
 
-The initial draft asked for clear completion controls but did not define
-their exact labels.
-
-During review, I accepted the following clarification:
-- Incomplete tasks show "Mark complete" and status "Incomplete".
-- Completed tasks show "Undo completion" and status "Completed".
-- Each button's accessible name includes its task name.
-
-This removes ambiguity about how to complete and undo a task and makes
-the requirement easier to verify.
-
-## 2. Implementation Verification
-
-Pending implementation.
-
-## 3. Design Comparison
-
-Pending implementation.
-
-## 4. User Feedback
-
-Pending a real session with one person.
-
-## 5. Final Reflection
-
-Pending completion of the design, POC, and MVP.
+These updates supersede the corresponding pending items above.
