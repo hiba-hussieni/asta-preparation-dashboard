@@ -123,7 +123,7 @@ Design screenshots are available in `docs/evidence/`.
   and reported it was close.
 
 No automated browser test suite was run.
-An independent user session is still pending.
+A usability session was completed with my sister. She reported that the interface was clear and that the percentage matched task completion.
 
 ## Dependency Audit
 
@@ -145,7 +145,7 @@ These development dependency findings remain unresolved.
 - No login, database, task editing, payments, chatbot,
   combat simulation, or live anime data.
 - Progress resets after refresh.
-- Independent user feedback remains to be collected.
+- User feedback is limited to one participant.
 - Screen-reader behaviour and measured color contrast
   have not been verified.
 
